@@ -1,3 +1,10 @@
 h3 {
     color: gray;
 }
+
+td.mat-cell, td.mat-footer-cell, th.mat-header-cell {
+    padding: 0 0.5em;
+    font-size: x-small;
+    text-align: center;
+}
+

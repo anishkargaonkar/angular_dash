@@ -9,7 +9,9 @@ import { AppComponent } from "./app.component";
 import { DashboardComponent } from "./dashboard/dashboard.component";
 
 // UI Modules
-import { MatCardModule, MatButtonModule } from "@angular/material";
+import { MatCardModule, MatButtonModule, 
+         MatDividerModule, MatTableModule, 
+         MatPaginatorModule, MatSelectModule} from "@angular/material";
 
 @NgModule({
   declarations: [AppComponent, DashboardComponent],
@@ -20,7 +22,9 @@ import { MatCardModule, MatButtonModule } from "@angular/material";
     HttpModule,
 
     // UI Components
-    MatCardModule, MatButtonModule
+    MatCardModule, MatButtonModule,
+    MatDividerModule, MatTableModule,
+    MatPaginatorModule, MatSelectModule
   ],
   providers: [],
   bootstrap: [AppComponent]

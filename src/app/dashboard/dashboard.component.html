@@ -1,5 +1,75 @@
 <mat-card>
-  <h3>
-    dashboard
-  </h3>
+  <div fxLayout="row" fxLayoutAlign="space-between center">
+    <div>
+      <mat-card-title>dashboard</mat-card-title>
+    </div>
+    <div>
+      <mat-form-field appearance="outline" style="font-size: x-small;width: 10em">
+          <mat-label>{{ uploader_selected }}</mat-label>
+        <mat-select placeholder="Uploader" (selectionChange)="setDashboardValues(setIDRef.value)" #setIDRef>
+          <mat-option *ngFor="let batch of dashboardData;let i = index" [value]="i" >
+            {{batch.name}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+  </div>
+  <mat-divider></mat-divider>
+
+  <mat-card-footer>
+    <!-- 'id', 'name', 'status', 'uploaded' -->
+    <div>
+      <table mat-table [dataSource]="dataSource" style="min-width: 18em;">
+
+        <!-- ID Column -->
+        <ng-container matColumnDef="id">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> ID </th>
+          <td mat-cell *matCellDef="let row">
+            {{row.doc_id}}
+          </td>
+        </ng-container>
+
+        <!-- Name Column -->
+        <ng-container matColumnDef="name">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Name </th>
+          <td mat-cell *matCellDef="let row">
+            {{row.name}}
+          </td>
+        </ng-container>
+
+        <!-- Progress Column -->
+        <ng-container matColumnDef="status">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Status </th>
+          <td mat-cell *matCellDef="let row">
+            {{ row.status }}
+          </td>
+        </ng-container>
+
+
+        <!-- Date Column -->
+        <ng-container matColumnDef="uploaded">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Uploaded </th>
+          <td mat-cell *matCellDef="let row" [style.color]="row.color">
+            <div fxLayout="column" fxLayoutAlign="center center">
+              <div>
+                <div fxHide.xs>{{row.date_uploaded | date:'MMM d, yy'}}</div>
+                <div fxHide fxShow.xs>{{row.date_uploaded | date:'MM/d/yy'}}</div>
+
+              </div>
+              <div>
+                <div fxHide.xs>{{row.date_uploaded | date:'h:mm:ss a'}}</div>
+                <div fxHide fxShow.xs>{{row.date_uploaded | date:'h:mm a'}}</div>
+              </div>
+            </div>
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;">
+        </tr>
+
+      </table>
+    </div>
+
+  </mat-card-footer>
 </mat-card>
