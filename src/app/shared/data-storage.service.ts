@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { Http } from "@angular/http";
+import { Http, Headers } from "@angular/http";
 import { Batch } from "./models/batch.model";
 import { Subject } from "rxjs";
 
@@ -26,6 +26,25 @@ export class DataStorageService {
       },
       err => console.log(err)
     );
+  }
+
+  updateData(id, document) {
+    this.http
+      .put(this.apiServerBaseURL + "/batch/" + id, document, {
+        headers: new Headers({
+          "Content-Type": "application/json"
+        })
+      })
+      .subscribe(
+        next => {
+          this.feed_data[id - 1] = next.json();
+          this.feedDataSubject.next(this.feed_data);
+          // this.getAllFeed();
+        },
+        err => {
+          console.log("Error occured while updating the data !!", err);
+        }
+      );
   }
 
   documentStatusArray = [

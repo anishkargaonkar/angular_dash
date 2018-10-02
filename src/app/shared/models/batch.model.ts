@@ -12,6 +12,7 @@ export class Document {
 
 // Batch Model
 export class  Batch {
+    public id: number;
     public set_id: number;
     public name: string;
     public status: string;
@@ -19,12 +20,14 @@ export class  Batch {
     public date_uploaded: string;
 
     constructor (
+    id: number,
     set_id: number,
     name: string,
     status: string,
     documents: Document[],
     date_uploaded: string
     ) {
+        this.id = id;
         this.set_id = set_id;
         this.name = name;
         this.status = status;

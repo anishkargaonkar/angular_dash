@@ -1,36 +1,36 @@
-<div fxLayout="column" fxLayoutAlign="center center">
-
-  <div mat-dialog-title fxLayout="column" style="width:100%">
+<div style="padding: 1em;" fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="2.5px">
+  <div mat-dialog-title fxLayout="column" style="width:100%;text-align: center">
     Document
-    <mat-divider></mat-divider>
   </div>
 
-  <mat-form-field *ngIf="data.doc.status">
+  <!-- <mat-form-field *ngIf="data.doc.status">
     <mat-select placeholder="Status">
-      <mat-option *ngFor="let status of document_status_arrray" [value]="status" [(ngModel)]="data.doc.status">
+      <mat-option *ngFor="let status of document_status_arrray" [value]="status" [ngModel]="data.doc.status">
         {{status}}
       </mat-option>
     </mat-select>
-  </mat-form-field>
-  
+  </mat-form-field> -->
+
   <button mat-icon-button (click)="fileInput.click()">
-      <input #fileInput type="file" (change)="onFileInput($event)" style="display:none;" />
-      <mat-icon>cloud_upload</mat-icon>
+    <input #fileInput type="file" (change)="onFileInput($event)" style="display:none;" />
+    <mat-icon>cloud_upload</mat-icon>
   </button>
 
-  <div style="font-size:xx-small">
+  <div style="font-size:xx-small;text-align: center">
     <div *ngIf="!data.doc.name">
       Please Upload the document to add
     </div>
-    <div *ngIf="data.doc.name">
-     {{ data.doc.name }}
+    <div *ngIf="data.doc.name" fxLayoutGap="2.5px" fxLayout="column" fxLayoutAlign="center center" style="font-weight: bold;color: gray">
+      <div>
+        {{ data.doc.name | titlecase}}
+      </div>
+      <div>
+        {{ data.doc.status | titlecase }}
+      </div>
     </div>
   </div>
-
-  <!-- <mat-form-field class="example-form-field">
-    <input type="file" placeholder="" [ngModel]="data.doc.name">
-    <mat-icon></mat-icon>
-  </mat-form-field> -->
-
-
+</div>
+<div style="margin-top:5px">
+  <button mat-button fxFlex color="warn" (click)="onNoClick()">Dismiss</button>
+  <button mat-button fxFlex color="primary" [mat-dialog-close]="data.doc" [disabled]="data.doc.name === null">Update</button>
 </div>
