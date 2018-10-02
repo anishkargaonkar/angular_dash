@@ -14,10 +14,11 @@ export class DashboardComponent implements OnInit {
   dataSource = new MatTableDataSource<Document>();
   displayedColumns: string[] = ['id', 'name', 'status', 'uploaded'];
   uploader_selected;
-  
+  curr_index: number;
+
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
-
+  
   constructor(private dataStorageService: DataStorageService) { }
 
   ngOnInit() {
@@ -32,6 +33,7 @@ export class DashboardComponent implements OnInit {
 
   setDashboardValues(index){
     console.log(index)
+    this.curr_index = index;
     this.uploader_selected = this.dashboardData[index].set_id;
     this.dataSource = new MatTableDataSource<any>(this.dashboardData[index].documents);
   }

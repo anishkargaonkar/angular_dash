@@ -3,6 +3,7 @@ import { NgModule } from "@angular/core";
 import { FlexLayoutModule } from "@angular/flex-layout";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { HttpModule } from '@angular/http';
+import { FormsModule } from '@angular/forms';
 
 // Components
 import { AppComponent } from "./app.component";
@@ -11,7 +12,8 @@ import { DashboardComponent } from "./dashboard/dashboard.component";
 // UI Modules
 import { MatCardModule, MatButtonModule, 
          MatDividerModule, MatTableModule, 
-         MatPaginatorModule, MatSelectModule} from "@angular/material";
+         MatPaginatorModule, MatSelectModule,
+         MatIconModule, MatTooltipModule} from "@angular/material";
 
 @NgModule({
   declarations: [AppComponent, DashboardComponent],
@@ -19,12 +21,13 @@ import { MatCardModule, MatButtonModule,
     BrowserModule,
     FlexLayoutModule,
     BrowserAnimationsModule,
-    HttpModule,
+    HttpModule, FormsModule,
 
     // UI Components
     MatCardModule, MatButtonModule,
     MatDividerModule, MatTableModule,
-    MatPaginatorModule, MatSelectModule
+    MatPaginatorModule, MatSelectModule, 
+    MatIconModule, MatTooltipModule
   ],
   providers: [],
   bootstrap: [AppComponent]

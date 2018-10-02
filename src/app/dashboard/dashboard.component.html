@@ -1,17 +1,25 @@
 <mat-card>
-  <div fxLayout="row" fxLayoutAlign="space-between center">
+  <div fxLayout="column" fxLayoutAlign="center center">
     <div>
       <mat-card-title>dashboard</mat-card-title>
     </div>
-    <div>
-      <mat-form-field appearance="outline" style="font-size: x-small;width: 10em">
-          <mat-label>{{ uploader_selected }}</mat-label>
-        <mat-select placeholder="Uploader" (selectionChange)="setDashboardValues(setIDRef.value)" #setIDRef>
-          <mat-option *ngFor="let batch of dashboardData;let i = index" [value]="i" >
-            {{batch.name}}
-          </mat-option>
-        </mat-select>
-      </mat-form-field>
+    <div fxLayout="row" fxLayoutAlign="space-between center" style="width: 100%;">
+      <div>
+        <mat-form-field appearance="outline" style="font-size: x-small;width: 10em">
+          <mat-select placeholder="Uploader" [ngModel]="curr_index" (selectionChange)="setDashboardValues(setIDRef.value)"
+            #setIDRef>
+            <mat-option *ngFor="let batch of dashboardData;let i = index" [value]="i">
+              {{batch.name}}
+            </mat-option>
+          </mat-select>
+          <mat-hint align="start">Set ID : {{ uploader_selected }}</mat-hint>
+        </mat-form-field>
+      </div>
+      <div>
+        <button mat-icon-button color="primary" matTooltip="Add Documents">
+          <mat-icon aria-label="Add Documents" >add_circle_outline</mat-icon>
+        </button>
+      </div>
     </div>
   </div>
   <mat-divider></mat-divider>
