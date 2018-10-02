@@ -17,7 +17,7 @@
       </div>
       <div>
         <button mat-icon-button color="primary" matTooltip="Add Documents">
-          <mat-icon aria-label="Add Documents" >add_circle_outline</mat-icon>
+          <mat-icon aria-label="Add Documents" (click)="addDocument()">add_circle_outline</mat-icon>
         </button>
       </div>
     </div>
@@ -41,7 +41,12 @@
         <ng-container matColumnDef="name">
           <th mat-header-cell *matHeaderCellDef mat-sort-header> Name </th>
           <td mat-cell *matCellDef="let row">
-            {{row.name}}
+            <div fxShow.xs fxHide>
+              {{(row.name.length>20)? (row.name | slice:0:20)+'..':(row.name)}}
+            </div>
+             <div fxShow fxHide.xs>
+              {{ row.name }}
+            </div>
           </td>
         </ng-container>
 

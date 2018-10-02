@@ -8,15 +8,18 @@ import { FormsModule } from '@angular/forms';
 // Components
 import { AppComponent } from "./app.component";
 import { DashboardComponent } from "./dashboard/dashboard.component";
+import { DocumentItemComponent } from './dashboard/document-item/document-item.component';
 
 // UI Modules
 import { MatCardModule, MatButtonModule, 
          MatDividerModule, MatTableModule, 
          MatPaginatorModule, MatSelectModule,
-         MatIconModule, MatTooltipModule} from "@angular/material";
+         MatIconModule, MatTooltipModule, 
+         MatDialogModule, MatInputModule,
+         MatSnackBarModule} from "@angular/material";
 
 @NgModule({
-  declarations: [AppComponent, DashboardComponent],
+  declarations: [AppComponent, DashboardComponent, DocumentItemComponent],
   imports: [
     BrowserModule,
     FlexLayoutModule,
@@ -27,9 +30,12 @@ import { MatCardModule, MatButtonModule,
     MatCardModule, MatButtonModule,
     MatDividerModule, MatTableModule,
     MatPaginatorModule, MatSelectModule, 
-    MatIconModule, MatTooltipModule
+    MatIconModule, MatTooltipModule,
+    MatDialogModule, MatInputModule,
+    MatSnackBarModule
   ],
   providers: [],
+  entryComponents: [DocumentItemComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

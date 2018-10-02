@@ -7,7 +7,7 @@ export class Document {
         public status: string,
         public uploader: string,
         public preview_url: string,
-        public date_uploaded: Date) { }
+        public date_uploaded: string) { }
 }
 
 // Batch Model

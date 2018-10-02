@@ -1,0 +1,36 @@
+<div fxLayout="column" fxLayoutAlign="center center">
+
+  <div mat-dialog-title fxLayout="column" style="width:100%">
+    Document
+    <mat-divider></mat-divider>
+  </div>
+
+  <mat-form-field *ngIf="data.doc.status">
+    <mat-select placeholder="Status">
+      <mat-option *ngFor="let status of document_status_arrray" [value]="status" [(ngModel)]="data.doc.status">
+        {{status}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+  
+  <button mat-icon-button (click)="fileInput.click()">
+      <input #fileInput type="file" (change)="onFileInput($event)" style="display:none;" />
+      <mat-icon>cloud_upload</mat-icon>
+  </button>
+
+  <div style="font-size:xx-small">
+    <div *ngIf="!data.doc.name">
+      Please Upload the document to add
+    </div>
+    <div *ngIf="data.doc.name">
+     {{ data.doc.name }}
+    </div>
+  </div>
+
+  <!-- <mat-form-field class="example-form-field">
+    <input type="file" placeholder="" [ngModel]="data.doc.name">
+    <mat-icon></mat-icon>
+  </mat-form-field> -->
+
+
+</div>
