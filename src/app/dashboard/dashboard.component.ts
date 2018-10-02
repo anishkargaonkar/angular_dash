@@ -41,14 +41,22 @@ export class DashboardComponent implements OnInit {
     // console.log(index)
     this.curr_index = index;
     this.uploader_selected = this.dashboardData[index].set_id;
-    this.dataSource = new MatTableDataSource<any>(this.dashboardData[index].documents);
+    this.dataSource = new MatTableDataSource<any>((this.dashboardData[index].documents));
+    this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
   }
 
   addDocument(): void{
     let doc = new Document(null,null,null,null,null,null,String(Date.now()));
-    doc.set_id = Number(this.dataSource.data[this.dataSource.data.length - 1].set_id);
-    doc.doc_id = Number(this.dataSource.data[this.dataSource.data.length - 1].doc_id) + 1;
-    doc.uploader = this.dataSource.data[this.dataSource.data.length - 1].uploader
+    if(this.dataSource.data.length > 0){
+      doc.set_id = Number(this.dataSource.data[this.dataSource.data.length - 1].set_id);
+      doc.doc_id = Number(this.dataSource.data[this.dataSource.data.length - 1].doc_id) + 1;
+      doc.uploader = this.dataSource.data[this.dataSource.data.length - 1].uploader
+    } else {
+      doc.set_id = 1;
+      doc.doc_id = 1;
+      doc.uploader = 'john'
+    }
 
     this.openDialog(doc, false, null);
   }
@@ -81,5 +89,32 @@ export class DashboardComponent implements OnInit {
     this.dashboardData[this.curr_index].documents.splice(document_index,1);
     this.dataStorageService.updateData(this.dashboardData[this.curr_index].id,this.dashboardData[this.curr_index]);
   }
-  
+
+  sortedData: Document[];
+
+  sortData(sort) {
+    const data = this.dashboardData[this.curr_index].documents.slice();
+    if (!sort.active || sort.direction === '') {
+      this.sortedData = data;
+      return;
+    }
+    this.dataSource.data = data.sort((a, b) => {
+      const isAsc = sort.direction === 'asc';
+      switch (sort.active) {
+        case 'id': return compare(a.doc_id, b.doc_id, isAsc);
+        case 'name': return compare(a.name, b.name, isAsc);
+        case 'status': return compare(a.status, b.status, isAsc);
+        case 'uploaded': return compare(a.date_uploaded, b.date_uploaded, isAsc);
+        default: return 0;
+      }
+  });
+  }
+
+  applyFilter(filterValue: string) {
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
+}
+
+function compare(a, b, isAsc) {
+  return (a < b ? -1 : 1) * (isAsc ? 1 : -1);
 }

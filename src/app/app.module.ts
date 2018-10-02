@@ -16,7 +16,7 @@ import { MatCardModule, MatButtonModule,
          MatPaginatorModule, MatSelectModule,
          MatIconModule, MatTooltipModule, 
          MatDialogModule, MatInputModule,
-         MatSnackBarModule} from "@angular/material";
+         MatSnackBarModule, MatSortModule} from "@angular/material";
 
 @NgModule({
   declarations: [AppComponent, DashboardComponent, DocumentItemComponent],
@@ -32,7 +32,7 @@ import { MatCardModule, MatButtonModule,
     MatPaginatorModule, MatSelectModule, 
     MatIconModule, MatTooltipModule,
     MatDialogModule, MatInputModule,
-    MatSnackBarModule
+    MatSnackBarModule, MatSortModule
   ],
   providers: [],
   entryComponents: [DocumentItemComponent],

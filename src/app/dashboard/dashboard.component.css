@@ -7,3 +7,7 @@ td.mat-cell, td.mat-footer-cell, th.mat-header-cell {
     font-size: x-small;
     /* text-align: center; */
 }
+
+table {
+    min-width: 100% !important;
+}
