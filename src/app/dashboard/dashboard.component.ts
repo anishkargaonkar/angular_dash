@@ -3,7 +3,6 @@ import { DataStorageService } from '../shared/data-storage.service';
 import { Batch , Document} from '../shared/models/batch.model';
 import { MatTableDataSource, MatPaginator, MatSort, MatDialog } from '@angular/material';
 import { DocumentItemComponent } from './document-item/document-item.component';
-import { getLocaleDateFormat, formatDate } from '@angular/common';
 
 @Component({
   selector: 'app-dashboard',
